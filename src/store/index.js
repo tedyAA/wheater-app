@@ -37,8 +37,11 @@ export default new Vuex.Store({
             console.log(response.data)
             commit('setWeather', response.data)
         },
-        async fetchForecast({commit},query) {
-            const response = await axios.get(`${this.state.url_base}forecast?q=${query}&appid=${this.state.api_key}`)
+        async fetchForecast({commit},lat, lng, days) {
+            console.log(lat)
+            console.log(lng)
+            console.log(days)
+            const response = await axios.get(`${this.state.url_base}forecast/daily?lat=${lat}&lon=${lng}&cnt=${days}&appid=${this.state.api_key}`)
             commit('setForecast', response.data)
             console.log(response.data)
         },
