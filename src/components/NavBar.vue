@@ -8,15 +8,6 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link active" @click="main">Home <span class="sr-only">(current)</span></a>
-      </div>
-      <div class="navbar-nav">
-        <a class="nav-item nav-link active" @click="loc">My Locations <span class="sr-only">(current)</span></a>
-      </div>
-      <div class="navbar-nav">
-        <a class="nav-item nav-link active" @click="fore">Forecast<span class="sr-only">(current)</span></a>
-      </div>
     </div>
   </nav>
 </template>
