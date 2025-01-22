@@ -18,12 +18,14 @@ export default {
             return require('../images/cloud.png')
         case 'Clear':
           return require('../images/clear.png')
+        case 'Rain':
+          return require('../images/rain.png')
         default:
           return '../assets/logo.png'
       }
     },
     dateBuilder() {
-      const d = new Date(this.forecast.dt)
+      const d = new Date(this.forecast.dt * 1000)
       let days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat",]
       let day = days[d.getDay()];
       let date = d.getDate();

@@ -11,7 +11,6 @@ export default new Vuex.Store({
     state: () => ({
         weather: {},
         forecast: {},
-        locations: {},
         api_key: '1cf838aa8644549473bdf55ad4147ca1',
         url_base: 'https://api.openweathermap.org/data/2.5/',
 
@@ -37,19 +36,15 @@ export default new Vuex.Store({
             console.log(response.data)
             commit('setWeather', response.data)
         },
-        async fetchForecast({commit},lat, lng, days) {
-            console.log(lat)
-            console.log(lng)
-            console.log(days)
-            const response = await axios.get(`${this.state.url_base}forecast/daily?lat=${lat}&lon=${lng}&cnt=${days}&appid=${this.state.api_key}`)
-            commit('setForecast', response.data)
-            console.log(response.data)
-        },
-       saveWeather({commit}, coordinates){
-            const response = axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${coordinates.lat}&lon=${coordinates.lng}&appid=${this.state.api_key}`)
-                .then(coordinates => {  commit('saveWeather', coordinates) } )
-           console.log(response)
-        },
+        async fetchForecast({commit},lat, lon, days) {
+            console.log(lat + 'lat')
+            console.log(lon+ 'lon')
+            console.log(days+ + 'days')
+            const response = await axios.get(`${this.state.url_base}forecast?lat=42.6975&lon=23.3242&appid=${this.state.api_key}`)
+            const forecast = response.data.list.filter((item) =>response.data.list.indexOf(item) % 8 === 0)
+            commit('setForecast', forecast)
+            console.log('res')
+        }
     }
 
 })

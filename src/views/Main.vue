@@ -2,28 +2,44 @@
   <div id="ap" class="main" :class="wrapperClass">
     <nav-bar/>
     <div>
-      <div class="row ml-5 mr-5" v-if="hasWeather">
-        <div class="col-6">
-          <Searchbox @fetchWeather="fetchWeather"/>
-          <div class="weather-wrap">
-            <div class="location-box">
-              <div class="location">{{ cityName}},{{ countryName }}</div>
-              <div class="date">{{ dateBuilder() }}</div>
-            </div>
-            <div class="weather-box">
-              <div class="temp">{{ temperatureFormatted }}°C</div>
-              <div class="weather">{{ weather }}</div>
+      <div v-if="hasWeather">
+        <div class="row ml-5 mr-5" >
+          <div class="col-6">
+            <Searchbox @fetchWeather="fetchWeather"/>
+            <div class="weather-wrap">
+              <div class="location-box">
+                <div class="location">{{ cityName}},{{ countryName }}</div>
+                <div class="date">{{ dateBuilder() }}</div>
+              </div>
+              <div class="weather-box">
+                <div class="temp">{{ temperatureFormatted }}°C</div>
+                <div class="weather">{{ weatherProg }}</div>
 
+              </div>
+            </div>
+          </div>
+          <div class="col-6 text-white">
+            <div class="weather-info">
+              <div class="row ml-5 mr-5">
+                <div class="col-6">
+                  <p>RealFeel</p>
+                </div>
+                <div class="col-6">
+                  <p>RealFeel Shade™</p>
+                </div>
+                <div class="col-6">
+                  <p>Max UV Index</p>
+                </div>
+                <div class="col-6">
+                  <p>Wind</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-6">
-          <div class="forecast-wrapper">
-            <div class="row">
-              <div class="col col-4" v-for="(item, index) in sixDayForecast" :key="index">
-                <ForecastCard :forecast="item"/>
-              </div>
-            </div>
+        <div class="forecast-wrapper">
+          <div class="m-3" v-for="(item, index) in forecast" :key="index">
+            <ForecastCard :forecast="item"/>
           </div>
         </div>
       </div>
@@ -40,6 +56,7 @@ import {mapActions} from 'vuex'
 import {mapState} from 'vuex'
 import Searchbox from "@/components/Searchbox.vue";
 import ForecastCard from "@/components/ForecastCard.vue";
+import {isEmpty} from "lodash";
 
 export default {
   name: 'Main',
@@ -51,33 +68,34 @@ export default {
     }
   },
   computed:{
+    ...mapState({
+      weather: (state) => state.weather,
+      forecast: (state) => state.forecast
+    }),
     temperatureFormatted(){
-      return Math.round((this.$store.state.weather.list[0].main.temp - 272))
+      return Math.round((this.weather.list[0].main.temp - 272))
     },
-    weather(){
-      return this.$store.state.weather.list[0].weather[0].description
+    weatherProg(){
+      return this.weather.list[0].weather[0].description
     },
     cityName(){
-      return this.$store.state.weather.city.name
+      return this.weather.city.name
     },
     countryName(){
-      return this.$store.state.weather.city.country
+      return this.weather.city.country
     },
     hasWeather(){
-      return this.$store.state.weather.list && typeof this.$store.state.weather.list[0].main !='undefined'
+      return this.weather.list && typeof this.weather.list[0].main !='undefined'
     },
     wrapperClass(){
       return typeof this.$store.state.weather.list[0].main !='undefined'
-      && this.$store.state.weather.list[0].main.temp - 272 > 25 ? 'warm' : (this.$store.state.weather.list[0].main.temp - 272 <10? '':'r')
+      && this.$store.state.weather.list[0].main.temp - 272 > 25 ? 'warm' : (this.weather.list[0].main.temp - 272 <10? '':'r')
     },
     sixDayForecast(){
       return this.$store.state.forecast.list.slice(0,6)
     }
   },
   methods: {
-    ...mapState([
-
-    ]),
     ...mapActions([
       'fetchWeather',
       'fetchForecast'
@@ -93,6 +111,13 @@ export default {
       return `${day} ${date} ${month} ${year}`;
     },
 
+  },
+  watch:{
+    weather(){
+      if(!isEmpty(this.weather)){
+        this.fetchForecast(this.weather.city.coord.lat, this.weather.city.coord.lon, 6)
+      }
+    }
   },
   created() {
     this.fetchWeather(this.beforeQuery)
@@ -174,8 +199,21 @@ main {
   font-style: italic;
   text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
 }
-
-.navbar {
-  opacity: 0.5;
+.forecast-wrapper{
+  display: flex;
+  justify-content: space-between;
+}
+.weather-info{
+  display: inline-block;
+  padding: 10px 25px;
+  color: #FFF;
+  font-size: 18px;
+  font-weight: 900;
+  text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 16px;
+  margin: 30px 0px;
+  box-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+  height: 100%;
 }
 </style>
