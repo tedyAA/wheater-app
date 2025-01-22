@@ -4,7 +4,7 @@
     <div>
       <div v-if="hasWeather">
         <div class="row ml-5 mr-5" >
-          <div class="col-8">
+          <div class="col-9">
             <Searchbox @fetchWeather="fetchWeather"/>
             <div class="weather-wrap">
               <div class="location-box">
@@ -24,22 +24,9 @@
               </div>
             </div>
           </div>
-          <div class="col-4">
-            <div class="card mt-5">
-              <p>this is title</p>
-              <p>JPMorgan Chase CEO Jamie Dimon and Tesla chief Elon Musk, once adversaries in a prolonged legal battle, have settled their differences, the banker told CNBC in an interview on Wednesday.\n\"Elon and I have hugged it out,\" Dimon said, while praising Musk for run…</p>
-            </div>
-            <div class="card mt-5">
-              <p>this is title</p>
-              <p>JPMorgan Chase CEO Jamie Dimon and Tesla chief Elon Musk, once adversaries in a prolonged legal battle, have settled their differences, the banker told CNBC in an interview on Wednesday.\n\"Elon and I have hugged it out,\" Dimon said, while praising Musk for run…</p>
-            </div>
-            <div class="card mt-5">
-              <p>this is title</p>
-              <p>JPMorgan Chase CEO Jamie Dimon and Tesla chief Elon Musk, once adversaries in a prolonged legal battle, have settled their differences, the banker told CNBC in an interview on Wednesday.\n\"Elon and I have hugged it out,\" Dimon said, while praising Musk for run…</p>
-            </div>
-            <div class="card mt-5">
-              <p>this is title</p>
-              <p>JPMorgan Chase CEO Jamie Dimon and Tesla chief Elon Musk, once adversaries in a prolonged legal battle, have settled their differences, the banker told CNBC in an interview on Wednesday.\n\"Elon and I have hugged it out,\" Dimon said, while praising Musk for run…</p>
+          <div class="col-3">
+            <div v-for="(item,index) in news.articles.slice(0,4)" :key="index" >
+              <NewsCard :news="item"/>
             </div>
           </div>
         </div>
@@ -59,10 +46,11 @@ import Searchbox from "@/components/Searchbox.vue";
 import ForecastCard from "@/components/ForecastCard.vue";
 import {isEmpty} from "lodash";
 import InfoCard from "@/components/InfoCard.vue";
+import NewsCard from "@/components/NewsCard.vue";
 
 export default {
   name: 'Main',
-  components: {InfoCard, ForecastCard, Searchbox, NavBar},
+  components: {NewsCard, InfoCard, ForecastCard, Searchbox, NavBar},
   data() {
     return {
       query: '',
@@ -72,7 +60,8 @@ export default {
   computed:{
     ...mapState({
       weather: (state) => state.weather,
-      forecast: (state) => state.forecast
+      forecast: (state) => state.forecast,
+      news: (state) => state.news
     }),
     temperatureFormatted(){
       return Math.round((this.weather.list[0].main.temp - 272))
@@ -92,15 +81,13 @@ export default {
     wrapperClass(){
       return typeof this.$store.state.weather.list[0].main !='undefined'
       && this.$store.state.weather.list[0].main.temp - 272 > 25 ? 'warm' : (this.weather.list[0].main.temp - 272 <10? '':'r')
-    },
-    sixDayForecast(){
-      return this.$store.state.forecast.list.slice(0,6)
     }
   },
   methods: {
     ...mapActions([
       'fetchWeather',
-      'fetchForecast'
+      'fetchForecast',
+        'fetchNews'
     ]),
     dateBuilder() {
       let d = new Date();
@@ -123,6 +110,7 @@ export default {
   },
   created() {
     this.fetchWeather(this.beforeQuery)
+    this.fetchNews()
   },
 }
 </script>
