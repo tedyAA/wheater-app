@@ -4,14 +4,14 @@
       <div class="col-6">
        <div class="d-flex justify-content-between">
          <p>RealFeel</p>
-         <p>46°</p>
+         <p>{{realFeelFormatted}}°</p>
        </div>
         <hr />
       </div>
       <div class="col-6">
         <div class="d-flex justify-content-between">
-          <p>RealFeel</p>
-          <p>46°</p>
+          <p>Humidity</p>
+          <p>{{humidity}}%</p>
         </div>
         <hr />
       </div>
@@ -19,15 +19,15 @@
     <div class="row ml-5 mr-5">
       <div class="col-6">
         <div class="d-flex justify-content-between">
-          <p>RealFeel</p>
-          <p>46°</p>
+          <p>Min Temperature</p>
+          <p>{{minTemp}}°</p>
         </div>
         <hr />
       </div>
       <div class="col-6">
         <div class="d-flex justify-content-between">
-          <p>RealFeel</p>
-          <p>46°</p>
+          <p>Max Temperature</p>
+          <p>{{maxTemp}}°</p>
         </div>
         <hr />
       </div>
@@ -35,15 +35,15 @@
     <div class="row ml-5 mr-5">
       <div class="col-6">
         <div class="d-flex justify-content-between">
-          <p>RealFeel</p>
-          <p>46°</p>
+          <p>Clouds Coverage</p>
+          <p>{{clouds}}</p>
         </div>
         <hr />
       </div>
       <div class="col-6">
         <div class="d-flex justify-content-between">
-          <p>RealFeel</p>
-          <p>46°</p>
+          <p>Wind Speed</p>
+          <p>{{windSpeed}}</p>
         </div>
         <hr />
       </div>
@@ -52,7 +52,30 @@
 </template>
 <script>
 export default {
-  name:'InfoCard'
+  name:'InfoCard',
+  props:{
+    weather:{type: Object,required: true}
+  },
+  computed:{
+    realFeelFormatted(){
+      return Math.round((this.weather.main.temp - 272))
+    },
+    humidity(){
+      return this.weather.main.humidity
+    },
+    minTemp(){
+      return Math.round((this.weather.main.temp_min - 272))
+    },
+    maxTemp(){
+      return Math.round((this.weather.main.temp_max - 272))
+    },
+    clouds(){
+      return this.weather.clouds.all +'%'
+    },
+    windSpeed(){
+      return 'WSW ' + this.weather.wind.speed +' mph'
+    },
+  }
 }
 </script>
 <style>

@@ -17,7 +17,7 @@
 
               </div>
             </div>
-            <InfoCard/>
+            <InfoCard :weather="weather.list[0]" class="mt-5"/>
             <div class="forecast-wrapper">
               <div class="m-3" v-for="(item, index) in forecast" :key="index">
                 <ForecastCard :forecast="item"/>
