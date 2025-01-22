@@ -4,7 +4,7 @@
     <div>
       <div v-if="hasWeather">
         <div class="row ml-5 mr-5" >
-          <div class="col-6">
+          <div class="col-8">
             <Searchbox @fetchWeather="fetchWeather"/>
             <div class="weather-wrap">
               <div class="location-box">
@@ -17,14 +17,30 @@
 
               </div>
             </div>
+            <InfoCard :weather="weather.list[0]" class="mt-5"/>
+            <div class="forecast-wrapper">
+              <div class="m-3" v-for="(item, index) in forecast" :key="index">
+                <ForecastCard :forecast="item"/>
+              </div>
+            </div>
           </div>
-          <div class="col-6 h-100">
-           <InfoCard/>
-          </div>
-        </div>
-        <div class="forecast-wrapper">
-          <div class="m-3" v-for="(item, index) in forecast" :key="index">
-            <ForecastCard :forecast="item"/>
+          <div class="col-4">
+            <div class="card mt-5">
+              <p>this is title</p>
+              <p>JPMorgan Chase CEO Jamie Dimon and Tesla chief Elon Musk, once adversaries in a prolonged legal battle, have settled their differences, the banker told CNBC in an interview on Wednesday.\n\"Elon and I have hugged it out,\" Dimon said, while praising Musk for run…</p>
+            </div>
+            <div class="card mt-5">
+              <p>this is title</p>
+              <p>JPMorgan Chase CEO Jamie Dimon and Tesla chief Elon Musk, once adversaries in a prolonged legal battle, have settled their differences, the banker told CNBC in an interview on Wednesday.\n\"Elon and I have hugged it out,\" Dimon said, while praising Musk for run…</p>
+            </div>
+            <div class="card mt-5">
+              <p>this is title</p>
+              <p>JPMorgan Chase CEO Jamie Dimon and Tesla chief Elon Musk, once adversaries in a prolonged legal battle, have settled their differences, the banker told CNBC in an interview on Wednesday.\n\"Elon and I have hugged it out,\" Dimon said, while praising Musk for run…</p>
+            </div>
+            <div class="card mt-5">
+              <p>this is title</p>
+              <p>JPMorgan Chase CEO Jamie Dimon and Tesla chief Elon Musk, once adversaries in a prolonged legal battle, have settled their differences, the banker told CNBC in an interview on Wednesday.\n\"Elon and I have hugged it out,\" Dimon said, while praising Musk for run…</p>
+            </div>
           </div>
         </div>
       </div>
@@ -127,7 +143,7 @@ body {
   background-size: cover;
   background-position: bottom;
   transition: 0.4s;
-  height: 100vh;
+  height: 100%;
 }
 
 #ap.warm {
@@ -190,5 +206,6 @@ main {
   justify-content: space-between;
 }
 .navbar {
-  opacity: 0.5;}
+  opacity: 0.5;
+}
 </style>
