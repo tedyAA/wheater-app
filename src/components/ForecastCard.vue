@@ -1,25 +1,36 @@
 <template>
-    <div class="location-box">
-      <div class="location">{{forecast.city.name}},{{forecast.city.country }}</div>
-     <div class="weather-box">
-        <div class="date">{{ forecast.list[listNumber].dt_txt }}</div>
-        <div class="temp">{{ Math.round((forecast.list[listNumber].main.temp - 272)) }}°C</div>
-        <div class="weather">{{ forecast.list[listNumber].weather[0].description }}</div>
-      </div>
-    </div>
-
+<div class="text-center">
+  <p class="text-white">{{dateBuilder}}</p>
+  <img :src="forecastIcon" width="130" height="50"/>
+</div>
 </template>
 
 <script>
-import {mapState} from "vuex";
-
 export default {
   name: "ForecastCard",
-  computed: mapState({
-    forecast: state => state.forecast,
-  }),
   props: {
-    listNumber: Number,
+    forecast: {type: Object, required: true},
+  },
+  computed:{
+    forecastIcon(){
+      switch(this.forecast.weather[0].main){
+        case 'Clouds':
+            return require('../images/cloud.png')
+        case 'Clear':
+          return require('../images/clear.png')
+        case 'Rain':
+          return require('../images/rain.png')
+        default:
+          return '../assets/logo.png'
+      }
+    },
+    dateBuilder() {
+      const d = new Date(this.forecast.dt * 1000)
+      let days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat",]
+      let day = days[d.getDay()];
+      let date = d.getDate();
+      return `${day} ${date}`;
+    },
   }
 }
 </script>
