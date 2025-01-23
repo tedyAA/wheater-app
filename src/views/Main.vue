@@ -25,7 +25,7 @@
             </div>
           </div>
           <div class="col-3">
-            <div v-for="(item,index) in news.articles.slice(0,4)" :key="index" >
+            <div v-for="(item,index) in newsToShow" :key="index" >
               <NewsCard :news="item"/>
             </div>
           </div>
@@ -80,7 +80,15 @@ export default {
     },
     wrapperClass(){
       return typeof this.$store.state.weather.list[0].main !='undefined'
-      && this.$store.state.weather.list[0].main.temp - 272 > 25 ? 'warm' : (this.weather.list[0].main.temp - 272 <10? '':'r')
+      && this.$store.state.weather.list[0].main.temp - 272 > 15 ? 'warm' : (this.weather.list[0].main.temp - 272 <10? '':'r')
+    },
+    newsToShow(){
+      const news = this.news.articles
+      for (let i = news.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [news[i], news[j]] = [news[j], news[i]];
+      }
+      return news.slice(0,3);
     }
   },
   methods: {
