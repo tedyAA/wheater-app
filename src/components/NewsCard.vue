@@ -43,7 +43,7 @@ export default {
   font-size: 14px;
   font-weight: 900;
   text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
-  background-color: rgba(87, 87, 87, 0.25);
+  background-color: rgb(107 107 107 / 60%);
   border-radius: 16px;
   box-shadow: 3px 6px rgba(0, 0, 0, 0.25);
 }
