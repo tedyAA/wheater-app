@@ -4,7 +4,7 @@
            class="search-bar"
            placeholder="Search..."
            v-model="query"
-           @keypress="$emit('fetchWeather',query)"
+           @keyup.enter="$emit('fetchWeather',query)"
     />
     <button class="btn btn-success mt-2" @click="$emit('fetchWeather',query)" >Search</button>
   </div>
