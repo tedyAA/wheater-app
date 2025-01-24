@@ -1,6 +1,6 @@
 <template>
-  <div class="card mt-5">
-    <img :src="newsImg"  class="card-img-top" width="200"/>
+  <div class="card mt-5 h-100">
+    <img :src="newsImg"  class="card-img-top" width="200" height="200"/>
     <div class="card-body text-left">
     <p>{{dateBuilder}}</p>
     <p>{{news.title}}</p>
@@ -46,5 +46,9 @@ export default {
   background-color: rgb(107 107 107 / 60%);
   border-radius: 16px;
   box-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+}
+.card-img-top{
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
 }
 </style>

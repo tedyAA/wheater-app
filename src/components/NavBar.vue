@@ -4,6 +4,9 @@
       <img src="../assets/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
       Weather App
     </a>
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" @click="loc">news<span class="sr-only">(current)</span></a>
+    </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -17,14 +20,11 @@
 export default {
   name: "NavBar",
   methods:{
-    main(){
+    loc() {
+      this.$router.push('/news')
+    },
+    main() {
       this.$router.push('/')
-    },
-    loc(){
-      this.$router.push('/loc')
-    },
-    fore(){
-      this.$router.push('/fore')
     }
   }
 }

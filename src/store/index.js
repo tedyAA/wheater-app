@@ -24,28 +24,21 @@ export default new Vuex.Store({
         },
         setForecast(state, results) {
             state.forecast = results
-            console.log(state.forecast)
         },
         setNews(state, results) {
             state.news = results
-            console.log(state.news)
         },
     },
     actions: {
 
         async fetchWeather({commit}, query) {
             const response = await axios.get(`${this.state.weather_url_base}forecast?q=${query}&appid=${this.state.weather_api_key}`)
-            console.log(response.data)
             commit('setWeather', response.data)
         },
-        async fetchForecast({commit},lat, lon, days) {
-            console.log(lat + 'lat')
-            console.log(lon+ 'lon')
-            console.log(days+ + 'days')
+        async fetchForecast({commit}) {
             const response = await axios.get(`${this.state.weather_url_base}forecast?lat=42.6975&lon=23.3242&appid=${this.state.weather_api_key}`)
             const forecast = response.data.list.filter((item) =>response.data.list.indexOf(item) % 8 === 0)
             commit('setForecast', forecast)
-            console.log('res')
         },
         async fetchNews({commit}) {
             const response = await axios.get(`${this.state.news_url_base}?country=us&apiKey=${this.state.news_api_key}`)
