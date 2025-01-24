@@ -7,7 +7,9 @@
     <div class="container">
       <div class="row">
         <div class="col-4 mt-2 mb-2" v-for="(item,index) in newsToShow" :key="index">
-          <NewsCard :news="item"/>
+          <router-link :to="'/news/' + item.source.name">
+            <NewsCard :news="item" class="is-clickable"/>
+          </router-link>
         </div>
       </div>
     </div>
@@ -33,7 +35,7 @@ export default {
       }
       return news
     }
-  }
+  },
 }
 </script>
 <style scoped>

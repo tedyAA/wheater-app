@@ -22,6 +22,9 @@ export default {
   methods:{
     loc() {
       this.$router.push('/news')
+    },
+    main() {
+      this.$router.push('/')
     }
   }
 }

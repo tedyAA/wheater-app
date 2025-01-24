@@ -1,3 +1,5 @@
 <template>
-  <div></div>
+  <div>
+    <p>dynamic route</p>
+  </div>
 </template>
