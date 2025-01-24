@@ -6,7 +6,7 @@
         <div class="row" >
           <div class="col-xl-9 col-lg-8 col-md-12 col-12">
             <Searchbox @fetchWeather="fetchWeather"/>
-            <div v-if="false" class="weather-wrap">
+            <div class="weather-wrap">
               <div class="location-box">
                 <div class="location">{{ cityName}},{{ countryName }}</div>
                 <div class="date">{{ dateBuilder() }}</div>
