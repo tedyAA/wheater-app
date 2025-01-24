@@ -1,12 +1,12 @@
 <template>
   <div id="ap" class="main" :class="wrapperClass">
     <nav-bar/>
-    <div>
+    <div class="container">
       <div v-if="hasWeather">
-        <div class="row ml-5 mr-5" >
-          <div class="col-9">
+        <div class="row" >
+          <div class="col-xl-9 col-lg-8 col-md-12 col-12">
             <Searchbox @fetchWeather="fetchWeather"/>
-            <div class="weather-wrap">
+            <div v-if="false" class="weather-wrap">
               <div class="location-box">
                 <div class="location">{{ cityName}},{{ countryName }}</div>
                 <div class="date">{{ dateBuilder() }}</div>
@@ -17,14 +17,14 @@
 
               </div>
             </div>
-            <InfoCard :weather="weather.list[0]" class="mt-5"/>
-            <div class="forecast-wrapper">
-              <div class="m-3" v-for="(item, index) in forecast" :key="index">
+            <InfoCard v-if="false" :weather="weather.list[0]" class="mt-5"/>
+            <div class="row row-cols-lg-5 row-cols-md-4 row-cols-sm-2 row-cols-2">
+              <div class="col" v-for="(item, index) in forecast" :key="index">
                 <ForecastCard :forecast="item"/>
               </div>
             </div>
           </div>
-          <div class="col-3">
+          <div v-if="false" class="col-xl-3 col-lg-4 col-md-12">
             <div v-for="(item,index) in newsToShow" :key="index" >
               <NewsCard :news="item"/>
             </div>
