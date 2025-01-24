@@ -1,14 +1,14 @@
 <template>
   <div class="weather-info text-white mt-10 mb-10">
-    <div class="row ml-5 mr-5">
-      <div class="col-6">
+    <div class="row row-cols-1 row-cols-sm-2">
+      <div class="col">
        <div class="d-flex justify-content-between">
          <p>RealFeel</p>
          <p>{{realFeelFormatted}}°</p>
        </div>
         <hr />
       </div>
-      <div class="col-6">
+      <div class="col">
         <div class="d-flex justify-content-between">
           <p>Humidity</p>
           <p>{{humidity}}%</p>
@@ -16,15 +16,15 @@
         <hr />
       </div>
     </div>
-    <div class="row ml-5 mr-5">
-      <div class="col-6">
+    <div class="row row-cols-1 row-cols-sm-2">
+      <div class="col">
         <div class="d-flex justify-content-between">
           <p>Min Temperature</p>
           <p>{{minTemp}}°</p>
         </div>
         <hr />
       </div>
-      <div class="col-6">
+      <div class="col">
         <div class="d-flex justify-content-between">
           <p>Max Temperature</p>
           <p>{{maxTemp}}°</p>
@@ -32,15 +32,15 @@
         <hr />
       </div>
     </div>
-    <div class="row ml-5 mr-5">
-      <div class="col-6">
+    <div class="row row-cols-1 row-cols-sm-2">
+      <div class="col">
         <div class="d-flex justify-content-between">
           <p>Clouds Coverage</p>
           <p>{{clouds}}</p>
         </div>
         <hr />
       </div>
-      <div class="col-6">
+      <div class="col">
         <div class="d-flex justify-content-between">
           <p>Wind Speed</p>
           <p>{{windSpeed}}</p>
