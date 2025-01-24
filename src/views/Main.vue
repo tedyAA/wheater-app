@@ -17,14 +17,14 @@
 
               </div>
             </div>
-            <InfoCard v-if="false" :weather="weather.list[0]" class="mt-5"/>
+            <InfoCard :weather="weather.list[0]" class="mt-5"/>
             <div class="row row-cols-lg-5 row-cols-md-4 row-cols-sm-2 row-cols-2">
               <div class="col" v-for="(item, index) in forecast" :key="index">
                 <ForecastCard :forecast="item"/>
               </div>
             </div>
           </div>
-          <div v-if="false" class="col-xl-3 col-lg-4 col-md-12">
+          <div class="col-xl-3 col-lg-4 col-md-12">
             <div v-for="(item,index) in newsToShow" :key="index" >
               <NewsCard :news="item"/>
             </div>
