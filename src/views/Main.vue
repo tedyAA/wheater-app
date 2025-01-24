@@ -4,7 +4,7 @@
     <div class="container">
       <div v-if="hasWeather">
         <div class="row" >
-          <div class="col-xl-9 col-lg-8 col-md-12 col-12">
+          <div class="col-xl-8 col-lg-8 col-md-12 col-12">
             <Searchbox @fetchWeather="fetchWeather"/>
             <div class="weather-wrap">
               <div class="location-box">
@@ -24,7 +24,7 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-3 col-lg-4 col-md-12">
+          <div class="col-xl-4 col-lg-4 col-md-12">
             <div v-for="(item,index) in newsToShow" :key="index" >
               <NewsCard :news="item"/>
             </div>
