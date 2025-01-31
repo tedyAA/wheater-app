@@ -9,7 +9,7 @@
             <div class="weather-wrap">
               <div class="location-box">
                 <div class="location">{{ cityName}},{{ countryName }}</div>
-                <div class="date">{{ dateBuilder() }}</div>
+                <div class="date">{{ dateBuilderDDMY() }}</div>
               </div>
               <div class="weather-box">
                 <div class="temp">{{ temperatureFormatted }}°C</div>
@@ -47,6 +47,7 @@ import ForecastCard from "@/components/ForecastCard.vue";
 import {isEmpty} from "lodash";
 import InfoCard from "@/components/InfoCard.vue";
 import NewsCard from "@/components/NewsCard.vue";
+import {dateBuilderDDMY} from "@/helpers";
 
 export default {
   name: 'Main',
@@ -92,22 +93,12 @@ export default {
     }
   },
   methods: {
+    dateBuilderDDMY,
     ...mapActions([
       'fetchWeather',
       'fetchForecast',
         'fetchNews'
     ]),
-    dateBuilder() {
-      let d = new Date();
-      let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",]
-      let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",]
-      let day = days[d.getDay()];
-      let date = d.getDate();
-      let month = months[d.getMonth()];
-      let year = d.getFullYear()
-      return `${day} ${date} ${month} ${year}`;
-    },
-
   },
   watch:{
     weather(){

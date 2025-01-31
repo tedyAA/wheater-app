@@ -2,16 +2,18 @@
   <div class="card mt-5 h-100">
     <img :src="newsImg"  class="card-img-top" width="200" height="200"/>
     <div class="card-body text-left">
-    <p>{{dateBuilder}}</p>
+    <p>{{dateBuilderDD(news.publishedAt)}}</p>
     <p>{{news.title}}</p>
     </div>
   </div>
 </template>
 <script>
 import {isEmpty} from "lodash";
+import {dateBuilderDD} from "@/helpers";
 
 export default {
   name: 'NewsCard',
+  methods: {dateBuilderDD},
   props:{
     news:{type:Object,required:true}
   },
@@ -22,17 +24,7 @@ export default {
       }else{
         return this.news.urlToImage
       }
-    },
-    dateBuilder() {
-      let d = new Date(this.news.publishedAt);
-      let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",]
-      let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",]
-      let day = days[d.getDay()];
-      let date = d.getDate();
-      let month = months[d.getMonth()];
-      let year = d.getFullYear()
-      return `${day} ${date} ${month} ${year}`;
-    },
+    }
   }
 }
 </script>

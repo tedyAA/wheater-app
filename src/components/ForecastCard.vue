@@ -1,14 +1,17 @@
 <template>
 <div class="text-center forecast-card">
-  <p class="text-white">{{dateBuilder}}</p>
+  <p class="text-white">{{dateBuilderDD(forecast.dt * 1000)}}</p>
   <img :src="forecastIcon" width="90" height="90"/>
   <p><span class="min-temp">{{minTemp}}°</span> / {{maxTemp}}°</p>
 </div>
 </template>
 
 <script>
+import {dateBuilderDD} from "@/helpers";
+
 export default {
   name: "ForecastCard",
+  methods: {dateBuilderDD},
   props: {
     forecast: {type: Object, required: true},
   },
@@ -30,14 +33,7 @@ export default {
         default:
           return '../assets/logo.png'
       }
-    },
-    dateBuilder() {
-      const d = new Date(this.forecast.dt * 1000)
-      let days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat",]
-      let day = days[d.getDay()];
-      let date = d.getDate();
-      return `${day} ${date}`;
-    },
+    }
   }
 }
 </script>
