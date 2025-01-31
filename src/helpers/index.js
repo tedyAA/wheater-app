@@ -26,3 +26,7 @@ export function dateBuilderDD(d) {
     let date = d.getDate();
     return `${day} ${date}`;
 }
+
+export function kelvinToCelsius(temp){
+    return Math.round((temp - 272))
+}

@@ -4,7 +4,7 @@
       <div class="col">
        <div class="d-flex justify-content-between">
          <p>RealFeel</p>
-         <p>{{realFeelFormatted}}°</p>
+         <p>{{kelvinToCelsius(weather.main.temp)}}°</p>
        </div>
         <hr />
       </div>
@@ -20,14 +20,14 @@
       <div class="col">
         <div class="d-flex justify-content-between">
           <p>Min Temperature</p>
-          <p>{{minTemp}}°</p>
+          <p>{{kelvinToCelsius(weather.main.temp_min)}}°</p>
         </div>
         <hr />
       </div>
       <div class="col">
         <div class="d-flex justify-content-between">
           <p>Max Temperature</p>
-          <p>{{maxTemp}}°</p>
+          <p>{{kelvinToCelsius(weather.main.temp_max)}}°</p>
         </div>
         <hr />
       </div>
@@ -51,23 +51,17 @@
   </div>
 </template>
 <script>
+import {kelvinToCelsius} from "@/helpers";
+
 export default {
   name:'InfoCard',
+  methods: {kelvinToCelsius},
   props:{
     weather:{type: Object,required: true}
   },
   computed:{
-    realFeelFormatted(){
-      return Math.round((this.weather.main.temp - 272))
-    },
     humidity(){
       return this.weather.main.humidity
-    },
-    minTemp(){
-      return Math.round((this.weather.main.temp_min - 272))
-    },
-    maxTemp(){
-      return Math.round((this.weather.main.temp_max - 272))
     },
     clouds(){
       return this.weather.clouds.all +'%'

@@ -2,26 +2,20 @@
 <div class="text-center forecast-card">
   <p class="text-white">{{dateBuilderDD(forecast.dt * 1000)}}</p>
   <img :src="forecastIcon" width="90" height="90"/>
-  <p><span class="min-temp">{{minTemp}}°</span> / {{maxTemp}}°</p>
+  <p><span class="min-temp">{{kelvinToCelsius(forecast.main.temp_min)}}°</span> / {{kelvinToCelsius(forecast.main.temp_max)}}°</p>
 </div>
 </template>
 
 <script>
-import {dateBuilderDD} from "@/helpers";
+import {dateBuilderDD, kelvinToCelsius} from "@/helpers";
 
 export default {
   name: "ForecastCard",
-  methods: {dateBuilderDD},
+  methods: {kelvinToCelsius, dateBuilderDD},
   props: {
     forecast: {type: Object, required: true},
   },
   computed:{
-    minTemp(){
-      return Math.round((this.forecast.main.temp_min - 272))
-    },
-    maxTemp(){
-      return Math.round((this.forecast.main.temp_max - 272))
-    },
     forecastIcon(){
       switch(this.forecast.weather[0].main){
         case 'Clouds':
