@@ -5,7 +5,7 @@
       Weather App
     </a>
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" @click="loc">news<span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link active" @click="loc">News<span class="sr-only">(current)</span></a>
     </div>
   </nav>
 </template>
