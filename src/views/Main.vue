@@ -1,6 +1,5 @@
 <template>
   <div id="ap" class="main" :class="wrapperClass">
-    <nav-bar/>
     <div class="container">
       <div v-if="hasWeather">
         <div class="row" >
@@ -39,7 +38,6 @@
 </template>
 
 <script>
-import NavBar from "@/components/NavBar";
 import {mapActions} from 'vuex'
 import {mapState} from 'vuex'
 import Searchbox from "@/components/Searchbox.vue";
@@ -51,7 +49,7 @@ import {dateBuilderDDMY} from "@/helpers";
 
 export default {
   name: 'Main',
-  components: {NewsCard, InfoCard, ForecastCard, Searchbox, NavBar},
+  components: {NewsCard, InfoCard, ForecastCard, Searchbox},
   data() {
     return {
       query: '',

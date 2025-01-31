@@ -1,6 +1,5 @@
 <template>
   <div>
-    <nav-bar/>
     <div class="header">
       <img src="../../assets/news-header.png" alt="" class="header-image"/>
     </div>
@@ -18,11 +17,10 @@
 <script>
 import {mapState} from "vuex";
 import NewsCard from "@/components/NewsCard.vue";
-import NavBar from "@/components/NavBar.vue";
 
 export default {
   name: 'News',
-  components: {NavBar, NewsCard},
+  components: {NewsCard},
   computed:{
     ...mapState({
       news: (state) => state.news

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <NavBar/>
     <div class="container text-left">
       <img :src="newsImg" width="800" height="400"  class="mt-5"/>
       <p class="author" v-if="hasAuthor">Author: {{ news.author }}</p>
@@ -11,13 +10,9 @@
   </div>
 </template>
 <script>
-import NavBar from "@/components/NavBar.vue";
 import {isEmpty} from "lodash";
 export default {
   name:'newsPage',
-  components:{
-    NavBar
-  },
   data() {
     return {
       news: {},
