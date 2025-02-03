@@ -129,6 +129,7 @@ body {
   background-position: bottom;
   transition: 0.4s;
   height: 100%;
+  padding-top: 50px;
 }
 
 #ap.warm {

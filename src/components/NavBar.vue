@@ -36,5 +36,8 @@ export default {
 }
 .navbar {
   opacity: 0.5;
+  position: absolute;
+  top: 0;
+  width: 100%;
 }
 </style>
