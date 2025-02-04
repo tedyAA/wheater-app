@@ -1,11 +1,14 @@
 <template>
   <div class="wrapper">
-    <div class="container text-left mt-50">
-      <img :src="newsImg" width="800" height="400"  class="mt-5"/>
-      <p class="author" v-if="hasAuthor">Author: {{ news.author }}</p>
-      <p class="title">{{ news.title }}</p>
-      <p class="content">{{ news.description }}</p>
-      <p class="content">{{ news.content }}</p>
+    <div class="container mt-50">
+      <div class="has-text-centered">
+        <img :src="newsImg" class="mt-5 news-image"/>
+      </div>
+      <div class="text-left mt-50">
+        <p class="creator" v-if="hasCreator">Creator: {{ news.creator[0] }}</p>
+        <p class="title">{{ news.title }}</p>
+        <p class="content">{{ news.description }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -19,25 +22,25 @@ export default {
     };
   },
   computed:{
-    hasAuthor(){
-      return !isEmpty(this.news.author)
+    hasCreator(){
+      return !isEmpty(this.news.creator)
     },
     newsImg(){
-      if(isEmpty(this.news.urlToImage)){
+      if(isEmpty(this.news.image_url)){
         return require("../../assets/placeholder-img.png");
       }else{
-        return this.news.urlToImage
+        return this.news.image_url
       }
   }
   },
   created() {
     const id = this.$route.params.id;
-    this.news = this.$store.state.news.articles.find((item) => item.source.name === id);
+    this.news = this.$store.state.news.find((item) => item.article_id === id);
   },
 }
 </script>
 <style scoped>
-.author{
+.creator{
   font-size: 14px;
   font-weight: bold;
   margin-top: 5px;
@@ -58,5 +61,8 @@ export default {
 }
 .container{
   padding-top: 50px;
+}
+.news-image{
+  max-width: 1000px;
 }
 </style>

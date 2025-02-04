@@ -82,7 +82,7 @@ export default {
       && this.$store.state.weather.list[0].main.temp - 272 > 15 ? 'warm' : (this.weather.list[0].main.temp - 272 <10? '':'r')
     },
     newsToShow(){
-      const news = this.news.articles
+      const news = this.news
       for (let i = news.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [news[i], news[j]] = [news[j], news[i]];
