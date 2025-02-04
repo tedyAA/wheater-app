@@ -14,8 +14,8 @@ export default new Vuex.Store({
         weather_api_key: '1cf838aa8644549473bdf55ad4147ca1',
         weather_url_base: 'https://api.openweathermap.org/data/2.5/',
         news: {},
-        news_api_key: 'd9361f93c29b4198871b33a407634fdf',
-        news_url_base: 'https://newsapi.org/v2/top-headlines',
+        news_api_key: 'pub_6782142b207bc841e1835cfa4fd5b35696b43',
+        news_url_base: 'https://newsdata.io/api/1/latest?',
 
     }),
     mutations: {
@@ -30,7 +30,6 @@ export default new Vuex.Store({
         },
     },
     actions: {
-
         async fetchWeather({commit}, query) {
             const response = await axios.get(`${this.state.weather_url_base}forecast?q=${query}&appid=${this.state.weather_api_key}`)
             commit('setWeather', response.data)
@@ -41,8 +40,9 @@ export default new Vuex.Store({
             commit('setForecast', forecast)
         },
         async fetchNews({commit}) {
-            const response = await axios.get(`https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=d9361f93c29b4198871b33a407634fdf`)
-            commit('setNews', response.data)
+            const response = await axios.get(`https://newsdata.io/api/1/latest?language=bg,en&apikey=pub_6782142b207bc841e1835cfa4fd5b35696b43`)
+            commit('setNews', response.data.results)
+            console.log(response.data.results)
         }
     }
 

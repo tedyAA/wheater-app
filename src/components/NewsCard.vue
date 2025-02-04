@@ -1,9 +1,9 @@
 <template>
-  <router-link :to="'/news/' + news.source.name">
+  <router-link :to="'/news/'+news.article_id">
   <div class="card mt-5 h-100">
     <img :src="newsImg"  class="card-img-top" width="200" height="200"/>
     <div class="card-body text-left">
-    <p>{{dateBuilderDD(news.publishedAt)}}</p>
+    <p>{{dateBuilderDD(news.pubDate)}}</p>
     <p>{{news.title}}</p>
     </div>
   </div>
@@ -21,10 +21,10 @@ export default {
   },
   computed:{
     newsImg(){
-      if(isEmpty(this.news.urlToImage)){
+      if(isEmpty(this.news.image_url)){
         return require("../assets/placeholder-img.png");
       }else{
-        return this.news.urlToImage
+        return this.news.image_url
       }
     }
   }
