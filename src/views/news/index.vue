@@ -6,9 +6,9 @@
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
         <div class="col mt-2 mb-2" v-for="(item,index) in newsToShow" :key="index">
-          <router-link :to="'/news/' + item.source.name">
+
             <NewsCard :news="item" class="is-clickable"/>
-          </router-link>
+
         </div>
       </div>
     </div>
