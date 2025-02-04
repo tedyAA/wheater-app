@@ -1,14 +1,12 @@
 <template>
-  <div>
+  <div class="wrapper">
     <div class="header">
       <img src="../../assets/news-header.png" alt="" class="header-image"/>
     </div>
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
         <div class="col mt-2 mb-2" v-for="(item,index) in newsToShow" :key="index">
-          <router-link :to="'/news/' + item.source.name">
-            <NewsCard :news="item" class="is-clickable"/>
-          </router-link>
+          <NewsCard :news="item" class="is-clickable"/>
         </div>
       </div>
     </div>
@@ -38,12 +36,17 @@ export default {
 </script>
 <style scoped>
 .header{
- background-color: #568bc2;
+  padding-top: 50px;
 }
 .header-image{
   width: 600px;
   @media  screen and (max-width: 500px) {
     width: 200px;
   }
+}
+.wrapper{
+  background-image: url("../../assets/news-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 </style>

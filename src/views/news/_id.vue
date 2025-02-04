@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="container text-left">
+  <div class="wrapper">
+    <div class="container text-left mt-50">
       <img :src="newsImg" width="800" height="400"  class="mt-5"/>
       <p class="author" v-if="hasAuthor">Author: {{ news.author }}</p>
       <p class="title">{{ news.title }}</p>
@@ -50,5 +50,13 @@ export default {
 .content{
   font-size: 18px;
   margin-top: 5px;
+}
+.wrapper{
+  background-image: url("../../assets/news-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.container{
+  padding-top: 50px;
 }
 </style>

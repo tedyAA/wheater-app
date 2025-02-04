@@ -1,4 +1,5 @@
 <template>
+  <router-link :to="'/news/' + news.source.name">
   <div class="card mt-5 h-100">
     <img :src="newsImg"  class="card-img-top" width="200" height="200"/>
     <div class="card-body text-left">
@@ -6,6 +7,7 @@
     <p>{{news.title}}</p>
     </div>
   </div>
+  </router-link>
 </template>
 <script>
 import {isEmpty} from "lodash";

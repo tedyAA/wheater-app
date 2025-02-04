@@ -101,12 +101,13 @@ export default {
   watch:{
     weather(){
       if(!isEmpty(this.weather)){
-        this.fetchForecast(this.weather.city.coord.lat, this.weather.city.coord.lon, 6)
+        this.fetchForecast(this.weather.city.coord)
       }
     }
   },
   created() {
     this.fetchWeather(this.beforeQuery)
+    this.fetchForecast(this.weather.city.coord)
     this.fetchNews()
   },
 }
