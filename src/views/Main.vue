@@ -2,31 +2,29 @@
   <div id="ap" class="main" :class="wrapperClass">
     <div class="container">
       <div v-if="hasWeather">
-        <div class="row" >
-          <div class="col-xl-8 col-lg-8 col-md-12 col-12">
-            <Searchbox @fetchWeather="fetchWeather"/>
-            <div class="weather-wrap">
-              <div class="location-box">
-                <div class="location">{{ cityName}},{{ countryName }}</div>
-                <div class="date">{{ dateBuilderDDMY() }}</div>
-              </div>
-              <div class="weather-box">
-                <div class="temp">{{ temperatureFormatted }}°C</div>
-                <div class="weather">{{ weatherProg }}</div>
-
-              </div>
+        <div class="">
+          <Searchbox @fetchWeather="fetchWeather"/>
+          <div class="weather-wrap">
+            <div class="location-box">
+              <div class="location">{{ cityName}},{{ countryName }}</div>
+              <div class="date">{{ dateBuilderDDMY() }}</div>
             </div>
-            <InfoCard :weather="weather.list[0]" class="mt-5"/>
-            <div class="row row-cols-lg-5 row-cols-md-4 row-cols-sm-2 row-cols-2">
-              <div class="col" v-for="(item, index) in forecast" :key="index">
-                <ForecastCard :forecast="item"/>
-              </div>
+            <div class="weather-box">
+              <div class="temp">{{ temperatureFormatted }}°C</div>
+              <div class="weather">{{ weatherProg }}</div>
+
             </div>
           </div>
-          <div class="col-xl-4 col-lg-4 col-md-12">
-            <div v-for="(item,index) in newsToShow" :key="index" >
-              <NewsCard :news="item"/>
+          <InfoCard :weather="weather.list[0]" class="mt-5"/>
+          <div class="row row-cols-lg-5 row-cols-md-4 row-cols-sm-2 row-cols-2">
+            <div class="col" v-for="(item, index) in forecast" :key="index">
+              <ForecastCard :forecast="item"/>
             </div>
+          </div>
+        </div>
+        <div class="row" >
+          <div v-for="(item,index) in newsToShow" :key="index" class="col">
+            <NewsCard :news="item"/>
           </div>
         </div>
       </div>
