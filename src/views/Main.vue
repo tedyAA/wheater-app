@@ -1,7 +1,6 @@
 <template>
   <div id="ap" class="main" :class="wrapperClass">
     <div class="container">
-      <p>ste</p>
       <div v-if="hasWeather">
         <div class="row" >
           <div class="col-xl-8 col-lg-8 col-md-12 col-12">
