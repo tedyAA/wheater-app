@@ -15,7 +15,7 @@
 
             </div>
           </div>
-          <InfoCard :weather="weather.list[0]" class="mt-5"/>
+          <InfoCard :weather="currentWeather" class="mt-5"/>
           <div class="row row-cols-lg-5 row-cols-md-4 row-cols-sm-2 row-cols-2">
             <div class="col" v-for="(item, index) in forecast" :key="index">
               <ForecastCard :forecast="item"/>
@@ -23,7 +23,7 @@
           </div>
         </div>
         <div class="row" >
-          <div v-for="(item,index) in newsToShow" :key="index" class="col">
+          <div v-for="(item,index) in news" :key="index" class="col">
             <NewsCard :news="item"/>
           </div>
         </div>
@@ -43,7 +43,7 @@ import ForecastCard from "@/components/ForecastCard.vue";
 import {isEmpty} from "lodash";
 import InfoCard from "@/components/InfoCard.vue";
 import NewsCard from "@/components/NewsCard.vue";
-import {dateBuilderDDMY} from "@/helpers";
+import {dateBuilderDDMY, kelvinToCelsius} from "@/helpers";
 
 export default {
   name: 'Main',
@@ -57,6 +57,7 @@ export default {
   computed:{
     ...mapState({
       weather: (state) => state.weather,
+      currentWeather: (state) => state.currentWeather,
       forecast: (state) => state.forecast,
       news: (state) => state.news
     }),
@@ -73,19 +74,11 @@ export default {
       return this.weather.city.country
     },
     hasWeather(){
-      return this.weather.list && typeof this.weather.list[0].main !='undefined'
+      return this.weather.list && typeof this.currentWeather.main !='undefined'
     },
     wrapperClass(){
-      return typeof this.$store.state.weather.list[0].main !='undefined'
-      && this.$store.state.weather.list[0].main.temp - 272 > 15 ? 'warm' : (this.weather.list[0].main.temp - 272 <10? '':'r')
-    },
-    newsToShow(){
-      const news = this.news
-      for (let i = news.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [news[i], news[j]] = [news[j], news[i]];
-      }
-      return news.slice(0,3);
+      return typeof this.hasWeather
+      && kelvinToCelsius(this.currentWeather.main.temp) > 15 ? 'warm' : (kelvinToCelsius(this.currentWeather.main.temp) <10? '':'r')
     }
   },
   methods: {
