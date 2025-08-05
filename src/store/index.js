@@ -43,7 +43,6 @@ export default new Vuex.Store({
             const response = await axios.get(`${this.state.weather_url_base}forecast?lat=${coord.lat}&lon=${coord.lon}&appid=${this.state.weather_api_key}`)
             const forecast = response.data.list.filter((item) =>response.data.list.indexOf(item) % 8 === 0)
             commit('setForecast', forecast)
-            console.log(response.data)
         },
         async fetchNews({commit}) {
             const response = await axios.get(`https://newsdata.io/api/1/latest?language=bg,en&apikey=pub_6782142b207bc841e1835cfa4fd5b35696b43`)

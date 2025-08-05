@@ -100,6 +100,7 @@ export default {
     this.fetchWeather(this.beforeQuery)
     this.fetchForecast(this.weather.city.coord)
     this.fetchNews()
+    console.log(this.forecast)
   },
 }
 </script>

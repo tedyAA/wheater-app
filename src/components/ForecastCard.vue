@@ -1,6 +1,6 @@
 <template>
 <div class="text-center forecast-card">
-  <p class="text-white">{{dateBuilderDD(forecast.dt * 1000)}}</p>
+  <p class="text-white">{{dateBuilderDD(forecast.dt)}}</p>
   <img :src="forecastIcon" width="90" height="90"/>
   <p><span class="min-temp">{{kelvinToCelsius(forecast.main.temp_min)}}°</span> / {{kelvinToCelsius(forecast.main.temp_max)}}°</p>
 </div>
