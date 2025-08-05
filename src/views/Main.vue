@@ -132,7 +132,7 @@ body {
 }
 
 #ap.warm {
-  background-image: url("../assets/warm-bg.jpg");
+  background-image: url("../assets/sunny-bg.jpg");
   background-size: cover;
 }
 #ap.r {
