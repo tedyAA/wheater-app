@@ -4,17 +4,7 @@
       <div v-if="hasWeather">
         <div class="">
           <Searchbox @fetchWeather="fetchWeather"/>
-          <div class="weather-wrap">
-            <div class="location-box">
-              <div class="location">{{ cityName}},{{ countryName }}</div>
-              <div class="date">{{ dateBuilderDDMY() }}</div>
-            </div>
-            <div class="weather-box">
-              <div class="temp">{{ temperatureFormatted }}°C</div>
-              <div class="weather">{{ weatherProg }}</div>
-
-            </div>
-          </div>
+          <CurrentWeatherCard :weather="weather"/>
           <InfoCard :weather="currentWeather" class="mt-5"/>
           <div class="row row-cols-lg-5 row-cols-md-4 row-cols-sm-2 row-cols-2">
             <div class="col" v-for="(item, index) in forecast" :key="index">
@@ -44,10 +34,11 @@ import {isEmpty} from "lodash";
 import InfoCard from "@/components/InfoCard.vue";
 import NewsCard from "@/components/NewsCard.vue";
 import {dateBuilderDDMY, kelvinToCelsius} from "@/helpers";
+import CurrentWeatherCard from "@/components/CurrentWeatherCard.vue";
 
 export default {
   name: 'Main',
-  components: {NewsCard, InfoCard, ForecastCard, Searchbox},
+  components: {CurrentWeatherCard, NewsCard, InfoCard, ForecastCard, Searchbox},
   data() {
     return {
       query: '',
@@ -61,18 +52,6 @@ export default {
       forecast: (state) => state.forecast,
       news: (state) => state.news
     }),
-    temperatureFormatted(){
-      return Math.round((this.weather.list[0].main.temp - 272))
-    },
-    weatherProg(){
-      return this.weather.list[0].weather[0].description
-    },
-    cityName(){
-      return this.weather.city.name
-    },
-    countryName(){
-      return this.weather.city.country
-    },
     hasWeather(){
       return this.weather.list && typeof this.currentWeather.main !='undefined'
     },
