@@ -75,15 +75,15 @@ export default {
 <style>
 .weather-info{
   display: inline-block;
-  padding: 40px;
+  padding: 20px 45px;
   color: #FFF;
-  font-size: 18px;
+  width: 100%;
   font-weight: 900;
   text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
-  background-color: rgb(107 107 107 / 60%);
+  background-color: rgba(255, 255, 255, 0.25);
   border-radius: 16px;
+  margin: 30px 0px;
   box-shadow: 3px 6px rgba(0, 0, 0, 0.25);
-  height: fit-content;
-  width: 100%;
+  font-size: 20px;
 }
 </style>

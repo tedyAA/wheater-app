@@ -58,8 +58,6 @@ export default {
 
 <style scoped lang="scss">
 .main {
-  background-image: url("../assets/cold-bg.jpg");
-  background-size: cover;
   transition: 0.4s;
   height: 100%;
   padding-top: 50px;
