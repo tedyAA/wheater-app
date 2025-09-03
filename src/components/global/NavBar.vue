@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light" :class="navBG">
     <a class="navbar-brand" @click="main">
-      <img src="../assets/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+      <img src="../../assets/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
       Weather App
     </a>
   </nav>

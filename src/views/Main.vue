@@ -16,9 +16,9 @@
 <script>
 import {mapActions} from 'vuex'
 import {mapState} from 'vuex'
-import Searchbox from "@/components/Searchbox.vue";
-import InfoCard from "@/components/InfoCard.vue";
-import CurrentWeatherCard from "@/components/CurrentWeatherCard.vue";
+import Searchbox from "@/components/global/Searchbox.vue";
+import InfoCard from "@/components/weather/InfoCard.vue";
+import CurrentWeatherCard from "@/components/weather/CurrentWeatherCard.vue";
 import {isEmpty} from "lodash";
 import ForecastList from "@/components/forecast/ForecastList.vue";
 
@@ -39,9 +39,6 @@ export default {
     }),
     hasWeather(){
       return this.weather.list && typeof this.currentWeather.main !='undefined'
-    },
-    hasForecast(){
-      return !isEmpty(this.forecast)
     }
   },
   methods: {
