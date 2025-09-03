@@ -1,5 +1,7 @@
 <template>
-  <div class="weather-wrap">
+<div>
+  <CurrentWeatherCardLoading v-if="weatherLoading"/>
+  <div class="weather-wrap" v-else>
     <div class="location-box">
       <div class="location">{{ cityName}},{{ countryName }}</div>
       <div class="date">{{ dateBuilderDDMY() }}</div>
@@ -10,16 +12,23 @@
 
     </div>
   </div>
+</div>
 </template>
 <script>
 import {dateBuilderDDMY, kelvinToCelsius} from "@/helpers";
+import {mapState} from "vuex";
+import CurrentWeatherCardLoading from "@/components/loading/CurrentWeatherCardLoading.vue";
 
 export default {
   name: 'CurrentWeatherCard',
+  components: {CurrentWeatherCardLoading},
   props:{
     weather:Object,
   },
   computed:{
+    ...mapState({
+      weatherLoading: (state) => state.weatherLoading,
+    }),
     temperatureFormatted(){
       return Math.round(kelvinToCelsius(this.weather.list[0].main.temp ))
     },

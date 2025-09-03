@@ -7,6 +7,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: () => ({
         weather: {},
+        weatherLoading: false,
+        weatherError:'',
         currentWeather: {},
         forecast: [],
         weather_api_key: process.env.VUE_APP_API_KEY,
@@ -26,9 +28,18 @@ export default new Vuex.Store({
     },
     actions: {
         async fetchWeather({commit}, query) {
-            const response = await axios.get(`${this.state.weather_url_base}forecast?q=${query}&appid=${this.state.weather_api_key}`)
-            commit('setWeather', response.data)
-            commit('setCurrentWeather', response.data)
+            this.state.weatherLoading = true
+            try{
+                const response = await axios.get(`${this.state.weather_url_base}forecast?q=${query}&appid=${this.state.weather_api_key}`)
+                commit('setWeather', response.data)
+                commit('setCurrentWeather', response.data)
+            } catch (error) {
+                this.state.weatherError = error
+            } finally {
+                setTimeout(() => {
+                    this.state.weatherLoading = false
+                }, 3000);
+            }
         },
         async fetchForecast({commit}, query) {
             const response = await axios.get(`${this.state.weather_url_base}forecast?q=${query}&appid=${this.state.weather_api_key}`)
