@@ -8,8 +8,8 @@ export default new Vuex.Store({
     state: () => ({
         weather: {},
         currentWeather: {},
-        forecast: {},
-        weather_api_key: '1cf838aa8644549473bdf55ad4147ca1',
+        forecast: [],
+        weather_api_key: process.env.VUE_APP_API_KEY,
         weather_url_base: 'https://api.openweathermap.org/data/2.5/',
 
     }),

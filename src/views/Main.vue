@@ -3,7 +3,7 @@
     <div class="container">
       <div v-if="hasWeather">
         <div class="">
-          <Searchbox @fetchWeather="fetchWeather"/>
+          <SearchBox @fetchWeather="fetchWeather"/>
           <CurrentWeatherCard :weather="weather"/>
           <InfoCard :weather="currentWeather" class="mt-5"/>
           <ForecastList :forecast="forecast"/>
@@ -16,7 +16,7 @@
 <script>
 import {mapActions} from 'vuex'
 import {mapState} from 'vuex'
-import Searchbox from "@/components/global/Searchbox.vue";
+import SearchBox from "@/components/global/Searchbox.vue";
 import InfoCard from "@/components/weather/InfoCard.vue";
 import CurrentWeatherCard from "@/components/weather/CurrentWeatherCard.vue";
 import {isEmpty} from "lodash";
@@ -24,7 +24,7 @@ import ForecastList from "@/components/forecast/ForecastList.vue";
 
 export default {
   name: 'Main',
-  components: {ForecastList, CurrentWeatherCard, InfoCard, Searchbox},
+  components: {ForecastList, CurrentWeatherCard, InfoCard, SearchBox},
   data() {
     return {
       query: '',
@@ -51,7 +51,6 @@ export default {
     weather(){
       if(!isEmpty(this.weather)){
         this.fetchForecast(this.weather.city.name)
-        console.log(this.forecast)
       }
     }
   },
