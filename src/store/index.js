@@ -10,6 +10,7 @@ export default new Vuex.Store({
         weatherLoading: false,
         forecastLoading: false,
         weatherError:'',
+        error: false,
         currentWeather: {},
         forecast: [],
         weather_api_key: process.env.VUE_APP_API_KEY,
@@ -35,7 +36,7 @@ export default new Vuex.Store({
                 commit('setWeather', response.data)
                 commit('setCurrentWeather', response.data)
             } catch (error) {
-                this.state.weatherError = error
+               this.state.error = true
             } finally {
                 setTimeout(() => {
                     this.state.weatherLoading = false
@@ -49,7 +50,8 @@ export default new Vuex.Store({
                 const forecast = response.data.list.filter((item) =>response.data.list.indexOf(item) % 8 === 0)
                 commit('setForecast', forecast)
             } catch (error) {
-                this.state.forecastError = error
+                this.state.error = true
+
             } finally {
                 setTimeout(() => {
                     this.state.forecastLoading = false

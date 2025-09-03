@@ -9,6 +9,7 @@
           <ForecastList :forecast="forecast"/>
         </div>
         </div>
+      <Error v-if="error"/>
     </div>
   </div>
 </template>
@@ -21,10 +22,11 @@ import InfoCard from "@/components/weather/InfoCard.vue";
 import CurrentWeatherCard from "@/components/weather/CurrentWeatherCard.vue";
 import {isEmpty} from "lodash";
 import ForecastList from "@/components/forecast/ForecastList.vue";
+import Error from "@/components/Error.vue";
 
 export default {
   name: 'Main',
-  components: {ForecastList, CurrentWeatherCard, InfoCard, SearchBox},
+  components: {Error, ForecastList, CurrentWeatherCard, InfoCard, SearchBox},
   data() {
     return {
       query: '',
@@ -36,6 +38,7 @@ export default {
       weather: (state) => state.weather,
       currentWeather: (state) => state.currentWeather,
       forecast: (state) => state.forecast,
+      error: (state) => state.error,
     }),
     hasWeather(){
       return this.weather.list && typeof this.currentWeather.main !='undefined'
