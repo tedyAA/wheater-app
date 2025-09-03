@@ -6,6 +6,7 @@
           <Searchbox @fetchWeather="fetchWeather"/>
           <CurrentWeatherCard :weather="weather"/>
           <InfoCard :weather="currentWeather" class="mt-5"/>
+          <ForecastList :forecast="forecast"/>
         </div>
         </div>
     </div>
@@ -18,10 +19,12 @@ import {mapState} from 'vuex'
 import Searchbox from "@/components/Searchbox.vue";
 import InfoCard from "@/components/InfoCard.vue";
 import CurrentWeatherCard from "@/components/CurrentWeatherCard.vue";
+import {isEmpty} from "lodash";
+import ForecastList from "@/components/forecast/ForecastList.vue";
 
 export default {
   name: 'Main',
-  components: {CurrentWeatherCard, InfoCard, Searchbox},
+  components: {ForecastList, CurrentWeatherCard, InfoCard, Searchbox},
   data() {
     return {
       query: '',
@@ -33,25 +36,31 @@ export default {
       weather: (state) => state.weather,
       currentWeather: (state) => state.currentWeather,
       forecast: (state) => state.forecast,
-      news: (state) => state.news
     }),
     hasWeather(){
       return this.weather.list && typeof this.currentWeather.main !='undefined'
+    },
+    hasForecast(){
+      return !isEmpty(this.forecast)
     }
-    // wrapperClass(){
-    //   return typeof this.hasWeather
-    //   && kelvinToCelsius(this.currentWeather.main.temp) > 15 ? 'warm' : (kelvinToCelsius(this.currentWeather.main.temp) <10? '':'r')
-    // }
   },
   methods: {
     ...mapActions([
       'fetchWeather',
-      'fetchForecast',
-        'fetchNews'
+      'fetchForecast'
     ]),
+  },
+  watch:{
+    weather(){
+      if(!isEmpty(this.weather)){
+        this.fetchForecast(this.weather.city.name)
+        console.log(this.forecast)
+      }
+    }
   },
   created() {
     this.fetchWeather(this.beforeQuery)
+    this.fetchForecast(this.beforeQuery)
   },
 }
 </script>

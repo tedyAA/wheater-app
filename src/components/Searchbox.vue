@@ -61,7 +61,7 @@ export default {
   border: none;
   height: 100%;
   color: #313131;
-  
+
   &:hover{
     box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
     background-color: rgba(255, 255, 255, 0.75);

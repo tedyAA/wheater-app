@@ -19,11 +19,11 @@ export default {
     forecastIcon(){
       switch(this.forecast.weather[0].main){
         case 'Clouds':
-            return require('../images/cloud.png')
+            return require('../../images/cloud.png')
         case 'Clear':
-          return require('../images/clear.png')
+          return require('../../images/clear.png')
         case 'Rain':
-          return require('../images/rain.png')
+          return require('../../images/rain.png')
         default:
           return '../assets/logo.png'
       }
@@ -40,7 +40,7 @@ export default {
   font-size: 16px;
   font-weight: 900;
   text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
-  background-color: rgb(107 107 107 / 60%);
+  background-color: rgba(255, 255, 255, 0.25);
   border-radius: 16px;
   margin: 30px 0px;
   box-shadow: 3px 6px rgba(0, 0, 0, 0.25);
