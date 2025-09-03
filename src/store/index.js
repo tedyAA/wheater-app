@@ -9,7 +9,6 @@ export default new Vuex.Store({
         weather: {},
         weatherLoading: false,
         forecastLoading: false,
-        weatherError:'',
         error: false,
         currentWeather: {},
         forecast: [],
