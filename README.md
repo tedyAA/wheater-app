@@ -1,35 +1,36 @@
-# weather-application
+# ☁️ Vue 2 Weather App
 
-## Description
+A simple and elegant **Weather Forecast Application** built with **Vue 2** and **Vuex**, featuring real-time weather data, forecast updates, and a modern UI.
 
-weather-application is a simple and intuitive weather application that helps you stay updated on current weather conditions and forecasts. With the ability to search for locations around the world, you can easily access real-time weather data, as well as a detailed 5-day forecast for any place you choose. In addition, weather-application keeps you informed with the latest top news, giving you the option to read more about current events.
+---
 
-Key Features:
+## 🌟 Features
 
-* Location Search: Quickly search for any location to view current weather and forecast data.
-* Current Weather: Get real-time information on temperature, humidity, wind speed, and more.
-* 5-Day Forecast: Plan ahead with a detailed 5-day weather forecast, including daily high/low temperatures and weather conditions.
-* Top News: Stay informed with the latest events impacting the world.
+- 🔍 **Search for any city** and get instant weather updates.
+- 🌡 **Current weather details** (temperature, humidity, wind, etc.).
+- 📅 **5-day forecast** with daily highlights.
+- 🎨 **Clean and responsive design** using SCSS.
 
-## Project setup
-```
-npm install
-```
+---
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## 🛠 Tech Stack
 
-### Compiles and minifies for production
-```
-npm run build
-```
+- **Vue 2**
+- **Vuex** (state management)
+- **Axios** (API calls)
+- **OpenWeather API** (or your chosen weather API)
+- **SCSS** for styling
 
-### Lints and fixes files
-```
-npm run lint
-```
+---
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 🚀 Getting Started
+
+### 1. Clone the Repository
+
+### 2. Create a .env.development and add your openweather api key as VUE_APP_API_KEY
+
+### 3. npm install
+
+### 4. cd weather-app
+
+### 5. npm run serve
