@@ -1,65 +1,74 @@
 <template>
-  <div class="weather-info text-white mt-10 mb-10">
-    <div class="row row-cols-1 row-cols-sm-2">
-      <div class="col">
-       <div class="d-flex justify-content-between">
-         <p>RealFeel</p>
-         <p>{{kelvinToCelsius(weather.main.temp)}}°</p>
+ <div>
+   <InfoCardLoading v-if="weatherLoading"/>
+   <div class="weather-info text-white mt-10 mb-10" v-else>
+     <div class="row row-cols-1 row-cols-sm-2">
+       <div class="col">
+         <div class="d-flex justify-content-between">
+           <p>RealFeel</p>
+           <p>{{kelvinToCelsius(weather.main.temp)}}°</p>
+         </div>
+         <hr />
        </div>
-        <hr />
-      </div>
-      <div class="col">
-        <div class="d-flex justify-content-between">
-          <p>Humidity</p>
-          <p>{{humidity}}%</p>
-        </div>
-        <hr />
-      </div>
-    </div>
-    <div class="row row-cols-1 row-cols-sm-2">
-      <div class="col">
-        <div class="d-flex justify-content-between">
-          <p>Min Temperature</p>
-          <p>{{kelvinToCelsius(weather.main.temp_min)}}°</p>
-        </div>
-        <hr />
-      </div>
-      <div class="col">
-        <div class="d-flex justify-content-between">
-          <p>Max Temperature</p>
-          <p>{{kelvinToCelsius(weather.main.temp_max)}}°</p>
-        </div>
-        <hr />
-      </div>
-    </div>
-    <div class="row row-cols-1 row-cols-sm-2">
-      <div class="col">
-        <div class="d-flex justify-content-between">
-          <p>Clouds Coverage</p>
-          <p>{{clouds}}</p>
-        </div>
-        <hr />
-      </div>
-      <div class="col">
-        <div class="d-flex justify-content-between">
-          <p>Wind Speed</p>
-          <p>{{windSpeed}}</p>
-        </div>
-        <hr />
-      </div>
-    </div>
-  </div>
+       <div class="col">
+         <div class="d-flex justify-content-between">
+           <p>Humidity</p>
+           <p>{{humidity}}%</p>
+         </div>
+         <hr />
+       </div>
+     </div>
+     <div class="row row-cols-1 row-cols-sm-2">
+       <div class="col">
+         <div class="d-flex justify-content-between">
+           <p>Min Temperature</p>
+           <p>{{kelvinToCelsius(weather.main.temp_min)}}°</p>
+         </div>
+         <hr />
+       </div>
+       <div class="col">
+         <div class="d-flex justify-content-between">
+           <p>Max Temperature</p>
+           <p>{{kelvinToCelsius(weather.main.temp_max)}}°</p>
+         </div>
+         <hr />
+       </div>
+     </div>
+     <div class="row row-cols-1 row-cols-sm-2">
+       <div class="col">
+         <div class="d-flex justify-content-between">
+           <p>Clouds Coverage</p>
+           <p>{{clouds}}</p>
+         </div>
+         <hr />
+       </div>
+       <div class="col">
+         <div class="d-flex justify-content-between">
+           <p>Wind Speed</p>
+           <p>{{windSpeed}}</p>
+         </div>
+         <hr />
+       </div>
+     </div>
+   </div>
+ </div>
 </template>
 <script>
 import {kelvinToCelsius} from "@/helpers";
+import {mapState} from "vuex";
+import InfoCardLoading from "@/components/loading/InfoCardLoading.vue";
 
 export default {
   name:'InfoCard',
+  components: {InfoCardLoading},
   methods: {kelvinToCelsius},
   props:{
     weather:{type: Object,required: true}
   },
   computed:{
+    ...mapState({
+      weatherLoading: (state) => state.weatherLoading,
+    }),
     humidity(){
       return this.weather.main.humidity
     },
