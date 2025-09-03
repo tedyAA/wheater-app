@@ -12,6 +12,7 @@ export default new Vuex.Store({
         error: false,
         currentWeather: {},
         forecast: [],
+        // Set your api key in your .end.development file
         weather_api_key: process.env.VUE_APP_API_KEY,
         weather_url_base: 'https://api.openweathermap.org/data/2.5/',
 
@@ -37,6 +38,8 @@ export default new Vuex.Store({
             } catch (error) {
                this.state.error = true
             } finally {
+                // This is here only to show loading components
+                // remove if not needed
                 setTimeout(() => {
                     this.state.weatherLoading = false
                 }, 3000);
@@ -52,6 +55,8 @@ export default new Vuex.Store({
                 this.state.error = true
 
             } finally {
+                // This is here only to show loading components
+                // remove if not needed
                 setTimeout(() => {
                     this.state.forecastLoading = false
                 }, 3000);
