@@ -8,6 +8,7 @@ export default new Vuex.Store({
     state: () => ({
         weather: {},
         weatherLoading: false,
+        forecastLoading: false,
         weatherError:'',
         currentWeather: {},
         forecast: [],
@@ -42,9 +43,19 @@ export default new Vuex.Store({
             }
         },
         async fetchForecast({commit}, query) {
-            const response = await axios.get(`${this.state.weather_url_base}forecast?q=${query}&appid=${this.state.weather_api_key}`)
-            const forecast = response.data.list.filter((item) =>response.data.list.indexOf(item) % 8 === 0)
-            commit('setForecast', forecast)
+            this.state.forecastLoading = true
+            try{
+                const response = await axios.get(`${this.state.weather_url_base}forecast?q=${query}&appid=${this.state.weather_api_key}`)
+                const forecast = response.data.list.filter((item) =>response.data.list.indexOf(item) % 8 === 0)
+                commit('setForecast', forecast)
+            } catch (error) {
+                this.state.forecastError = error
+            } finally {
+                setTimeout(() => {
+                    this.state.forecastLoading = false
+                }, 3000);
+            }
+
         },
     }
 
