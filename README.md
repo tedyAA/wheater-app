@@ -3,6 +3,8 @@
 A simple and elegant **Weather Forecast Application** built with **Vue 2** and **Vuex**, featuring real-time weather data, forecast updates, and a modern UI.
 
 ---
+<img width="1913" height="1108" alt="image" src="https://github.com/user-attachments/assets/13014649-7b6e-4612-af28-82c6f81d5c38" />
+
 
 ## 🌟 Features
 
@@ -25,12 +27,23 @@ A simple and elegant **Weather Forecast Application** built with **Vue 2** and *
 
 ## 🚀 Getting Started
 
-### 1. Clone the Repository
+### Instalation
+1. Clone the repository
+```bash
+git clone https://github.com/tedyAA/wheater-app.git
 
-### 2. Create a .env.development and add your openweather api key as VUE_APP_API_KEY
+```
+2. Install dependencies
+   
+```bash
+   npm install
+```
+3. Create a .env.development and add your openweather api key as
 
-### 3. npm install
-
-### 4. cd weather-app
-
-### 5. npm run serve
+```bash
+VUE_APP_API_KEY=
+```
+4. Run the app
+```bash
+npm run serve
+```
